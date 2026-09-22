@@ -1,3 +1,6 @@
 # Projeto de Estudos OAuth2
 
-Feito sem IA!!!
+ - GitHub
+ - Google
+
+_Feito sem IA!!!_

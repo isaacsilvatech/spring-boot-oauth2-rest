@@ -1,3 +1,46 @@
 spring:
-  application:
-    name: spring-boot-oauth2-rest
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+
+application:
+  api:
+    security:
+      token:
+        secret: ${JWT_SECRET:123456}
+        issuer: spring-boot-oauth2-rest
+
+      oauth2:
+        github.client:
+          id: ${GITHUB_CLIENT_ID}
+          secret: ${GITHUB_SECRET_ID}
+
+          scope: read:user,user:email
+          response-type: code
+
+          redirect-uri: http://localhost:8080/login/github/autorizado
+
+          url-authorize: ${GITHUB_OAUTH2_CLIENT_URL_AUTHORIZE:https://github.com/login/oauth/authorize}
+          url-acess-token: ${GITHUB_OAUTH2_CLIENT_URL_ACESS_TOKEN:https://github.com/login/oauth/access_token}
+          url-user: ${GITHUB_OAUTH2_CLIENT_URL_USER:https://api.github.com/user}
+          url-email: ${GITHUB_OAUTH2_CLIENT_URL_EMAIL:https://api.github.com/user/emails}
+
+        google.client:
+          id: ${GOOGLE_CLIENT_ID}
+          secret: ${GOOGLE_SECRET_ID}
+
+          scope: https://www.googleapis.com/auth/userinfo.email
+          response-type: code
+          grat-type: authorization_code
+
+          redirect-uri: http://localhost:8080/login/google/autorizado
+
+          url-authorize: ${GOOGLE_OAUTH2_CLIENT_URL_AUTHORIZE:https://accounts.google.com/o/oauth2/v2/auth}
+          url-acess-token: ${GOOGLE_OAUTH2_CLIENT_URL_AUTHORIZE:https://oauth2.googleapis.com/token}
+
+
+
+
+
